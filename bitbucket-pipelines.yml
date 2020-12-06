@@ -1,0 +1,15 @@
+image: hashicorp/terraform:light
+options:
+  docker: true
+
+definitions:
+  steps:
+    - step: &terraform-validate
+        name: Terraform validate
+        script:
+          - terraform init -backend=false
+          - terraform validate
+
+pipelines:
+  default: &default
+    - step: *terraform-validate

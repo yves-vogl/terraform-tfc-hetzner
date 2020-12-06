@@ -16,20 +16,20 @@ variable "working_directory" {
   default = "main"
 }
 
-variable "vcs_project_id" {
-  type        = string
-}
-
-variable "vcs_repository_name" {
+variable "bitbucket_workspace_name" {
   type = string
 }
 
-variable "vcs_ingress_submodules" {
+variable "bitbucket_repository_name" {
+  type = string
+}
+
+variable "bitbucket_repository_ingress_submodules" {
   type    = bool
   default = true
 }
 
-variable "vcs_oauth_token_id" {
+variable "bitbucket_oauth_token_id" {
   type        = string
   description = "See in Terraform Cloud > Organization > VCS Providers"
 }
@@ -43,7 +43,7 @@ variable "variables" {
   default = {}
 }
 
-variable "vcs_branch_name" {
+variable "bitbucket_repository_branch_name" {
   type = map(string)
 
   default = {

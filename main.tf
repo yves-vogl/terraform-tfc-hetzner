@@ -3,7 +3,7 @@ resource "tfe_workspace" "main" {
   organization = var.organization
 
   # Apply automatically if branch is not master
-  auto_apply            = var.vcs_branch_name[var.workspace_name] == "master" ? false : true
+  auto_apply            = var.bitbucket_repository_branch_name[var.workspace_name] == "master" ? false : true
   operations            = true
   file_triggers_enabled = true
   working_directory     = var.working_directory
@@ -12,14 +12,13 @@ resource "tfe_workspace" "main" {
   ]
 
   vcs_repo {
-    identifier         = "${var.vcs_project_id}/${var.vcs_repository_name}"
-    branch             = var.vcs_branch_name[var.workspace_name]
-    ingress_submodules = var.vcs_ingress_submodules
-    oauth_token_id     = var.vcs_oauth_token_id
+    identifier         = format("%s/%s", var.bitbucket_workspace_name, var.bitbucket_repository_name)
+    branch             = var.bitbucket_repository_branch_name[var.workspace_name]
+    ingress_submodules = var.bitbucket_repository_ingress_submodules
+    oauth_token_id     = var.bitbucket_oauth_token_id
   }
 
   terraform_version = var.terraform_version
-
 }
 
 resource "tfe_variable" "name" {
