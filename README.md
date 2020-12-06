@@ -48,7 +48,5 @@ module "terraform_cloud" {
       sensitive = true
     }
   }
-
-  tags = local.tags
 }
 ```
